@@ -6,9 +6,17 @@
     xmlns:local="clr-namespace:MyMoney"
     Title="MyMoney">
 
+    <TabBar>
     <ShellContent
-        Title="Home"
+        Title="Transakcje"
         ContentTemplate="{DataTemplate local:MainPage}"
+        Icon="dotnet_bot.png"
         Route="MainPage" />
+
+        <ShellContent Title="O aplikacji"
+                      Route="OAplicationPage"
+                      Icon="dotnet_bot.png"
+                      ContentTemplate="{DataTemplate local:OAplicationPage}" />
+    </TabBar>
 
 </Shell>

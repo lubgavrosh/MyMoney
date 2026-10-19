@@ -1,45 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MyMoney.MainPage">
+             x:Class="MyMoney.MainPage"
+              Title="Transakcje">
 
-    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="20">    
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="20">
 
-        <!-- Wiersz 0: nagłówek -->
-        
-           
-            
+            <Label Grid.Row="0" Text="Moneyfy" FontSize="32"
+               FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <VerticalStackLayout Grid.Row="1" Spacing="15" VerticalOptions="Start">
+                <!-- karta 1 -->
+                <Border Padding="20" Stroke="Gray" StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnKartaTapped" CommandParameter="1" />
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Zakupy w sklepie" FontSize="20" FontAttributes="Bold" />
+                        <Label Text="Kwota: -125,50 zł" TextColor="Red" FontSize="18" />
+                        <Label Text="Kategoria: Jedzenie" />
+                        <Label Text="Data: 09.10.2026" />
+                    </VerticalStackLayout>
+                </Border>
+                <!-- karta 2 -->
+                <Border Padding="20" Stroke="Gray" StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12" />
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnKartaTapped" CommandParameter="2" />
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Pensja" FontSize="20" FontAttributes="Bold" />
+                        <Label Text="Kwota: +4200,00 zł" TextColor="Green" FontSize="18" />
+                        <Label Text="Kategoria: Pensja" />
+                        <Label Text="Data: 01.10.2026" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
             <Image
  Source="mymoney.png"
  HeightRequest="185"
  Aspect="AspectFit"
  SemanticProperties.Description="dot net bot in a hovercraft number nine" /> 
       
-        <Label Grid.Row="0"
-               Text="MyMoney"
-               FontSize="32"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-
-        <!-- Wiersz 1: karta przykładowej transakcji -->
-        <Border Grid.Row="1"
-                Padding="20"
-                VerticalOptions="Start"
-                Stroke="Gray"
-                StrokeThickness="1">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="12" />
-            </Border.StrokeShape>
-
-            <VerticalStackLayout Spacing="8">
-                <Label Text="Zakupy w sklepie" FontSize="20" FontAttributes="Bold" />
-                <Label Text="Kwota: -125,50 zł" TextColor="Red" FontSize="18" />
-                <Label Text="Kategoria: Jedzenie" />
-                <Label Text="Data: 09.10.2026" />
-                <Label Text="Typ: wydatek" />
-            </VerticalStackLayout>
-        </Border>
-        
+       
 
         <!-- Wiersz 2: przyciski -->
         <HorizontalStackLayout Grid.Row="2"
