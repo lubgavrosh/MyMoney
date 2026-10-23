@@ -1,20 +1,13 @@
+using MyMoney.Models;
 namespace MyMoney;
 
-[QueryProperty(nameof(TransakcjaId), "id")]
+[QueryProperty(nameof(Transakcja), "Transakcja")]
 public partial class DetailsPage_1 : ContentPage
 {
-    string transakcjaId = "";
+    public Transaction Transakcja { set => BindingContext = value; }
 
-    public string TransakcjaId
-    {
-        get => transakcjaId;
-        set
-        {
-            transakcjaId = value;
-            NumerLabel.Text = $"Transakcja nr {value}";
-            
-        }
-    }
+
+ 
 
     public DetailsPage_1()
     {

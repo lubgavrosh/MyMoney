@@ -6,7 +6,7 @@
 
     <VerticalStackLayout Padding="20" Spacing="12">
         <Label Text="Moneyfy" Style="{StaticResource Headline}" />
-        <Label Text="Wersja 1.0" />
+        <Label Text="Wersja 1.2" />
         <Label Text="Autor: Liubomyr Havrosh" />
         <Label Text="Aplikacja do prowadzenia budżetu domowego: przychody, wydatki i kategorie." />
     </VerticalStackLayout>

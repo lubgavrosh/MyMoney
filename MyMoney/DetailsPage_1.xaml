@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MyMoney.Models"
              x:Class="MyMoney.DetailsPage_1"
+             x:DataType="models:Transaction"
              Title="Szczegóły">
 
-    <VerticalStackLayout Padding="20" Spacing="20">
-        <Label Text="Szczegóły transakcji" FontSize="24" FontAttributes="Bold" />
-        <Label x:Name="NumerLabel" FontSize="20" />
+    <VerticalStackLayout Padding="20" Spacing="12">
+        <Label Text="{Binding Opis}" FontSize="26" FontAttributes="Bold" />
+        <Label Text="{Binding Kwota, StringFormat='Kwota: {0:C}'}" FontSize="20" />
+        <Label Text="{Binding Typ, StringFormat='Typ: {0}'}" />
+        <Label Text="{Binding Kategoria, StringFormat='Kategoria: {0}'}" />
+        <Label Text="{Binding Data, StringFormat='Data: {0:d MMMM yyyy}'}" />
         <Button Text="Wróć" Clicked="OnWrocClicked" />
     </VerticalStackLayout>
 
