@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 
+using MyMoney.ViewModels;
+
 namespace MyMoney
 {
     public static class MauiProgram
@@ -14,6 +16,11 @@ namespace MyMoney
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<TransakcjeViewModel>();
+            builder.Services.AddTransient<DetailsPage_1>();
+            builder.Services.AddTransient<SzczegolyViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

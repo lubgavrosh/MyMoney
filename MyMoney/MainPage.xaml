@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MyMoney"
+             xmlns:vm="clr-namespace:MyMoney.ViewModels"
              xmlns:models="clr-namespace:MyMoney.Models"
              x:Class="MyMoney.MainPage"
-             x:DataType="local:MainPage"
+             x:DataType="vm:TransakcjeViewModel"
              Title="Transakcje">
 
     <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="20">
@@ -14,13 +14,20 @@
 
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Transakcje}"
-                        SelectionMode="Single"
-                        SelectionChanged="OnTransakcjaWybrana"
                         EmptyView="Nic tu nie ma — dodaj pierwszą transakcję">
+            <CollectionView.Header>
+                <Label Text="{Binding LiczbaTransakcji, StringFormat='Transakcji: {0}'}"
+                       Margin="0,0,0,12" FontSize="18" />
+            </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Transaction">
                     <Border Padding="16" Margin="0,0,0,12"
                             Stroke="Gray" StrokeThickness="1">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding PokazSzczegolyCommand, Source={RelativeSource AncestorType={x:Type vm:TransakcjeViewModel}}}"
+                                CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="12" />
                         </Border.StrokeShape>
@@ -42,7 +49,7 @@
         </CollectionView>
 
         <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center" Spacing="10">
-            <Button Text="Dodaj" Clicked="OnDodajClicked" />
+            <Button Text="Dodaj" Command="{Binding DodajCommand}" />
         </HorizontalStackLayout>
 
     </Grid>

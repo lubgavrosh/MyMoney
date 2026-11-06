@@ -1,21 +1,12 @@
-using MyMoney.Models;
+﻿using MyMoney.ViewModels;
+
 namespace MyMoney;
 
-[QueryProperty(nameof(Transakcja), "Transakcja")]
 public partial class DetailsPage_1 : ContentPage
 {
-    public Transaction Transakcja { set => BindingContext = value; }
-
-
- 
-
-    public DetailsPage_1()
+    public DetailsPage_1(SzczegolyViewModel viewModel)
     {
         InitializeComponent();
-    }
-
-    private async void OnWrocClicked(object? sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("..");
+        BindingContext = viewModel;
     }
 }
