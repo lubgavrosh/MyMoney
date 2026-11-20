@@ -23,6 +23,8 @@ namespace MyMoney
             builder.Services.AddSingleton<TransakcjeViewModel>();
             builder.Services.AddTransient<DetailsPage_1>();
             builder.Services.AddTransient<SzczegolyViewModel>();
+            builder.Services.AddTransient<FormularzPage>();
+            builder.Services.AddTransient<FormularzViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

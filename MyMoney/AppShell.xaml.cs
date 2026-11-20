@@ -6,6 +6,7 @@
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(DetailsPage_1), typeof(DetailsPage_1));
+            Routing.RegisterRoute(nameof(FormularzPage), typeof(FormularzPage));
         }
     }
 }

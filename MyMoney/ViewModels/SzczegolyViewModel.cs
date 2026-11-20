@@ -19,9 +19,18 @@ public partial class SzczegolyViewModel : ObservableObject, IQueryAttributable
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        Transakcja = query.TryGetValue("Transakcja", out var value)
-            ? value as Transaction
-            : null;
+        if (query.TryGetValue("Transakcja", out var value))
+            Transakcja = value as Transaction;
+    }
+
+    [RelayCommand]
+    private async Task Edytuj()
+    {
+        if (Transakcja is null)
+            return;
+
+        await Shell.Current.GoToAsync(nameof(FormularzPage),
+            new ShellNavigationQueryParameters { ["Transakcja"] = Transakcja });
     }
 
     [RelayCommand]

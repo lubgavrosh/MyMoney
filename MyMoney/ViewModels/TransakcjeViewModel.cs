@@ -32,15 +32,7 @@ public partial class TransakcjeViewModel : ObservableObject
     [RelayCommand]
     private async Task Dodaj()
     {
-        await _baza.ZapiszAsync(new Transaction
-        {
-            Opis = "Nowa transakcja",
-            Kwota = 50m,
-            Data = DateTime.Today,
-            CzyPrzychod = false,
-            Kategoria = "Inne"
-        });
-        await Wczytaj();
+        await Shell.Current.GoToAsync(nameof(FormularzPage));
     }
 
     [RelayCommand]

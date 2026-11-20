@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MyMoney.ViewModels"
+             x:Class="MyMoney.FormularzPage"
+             x:DataType="vm:FormularzViewModel"
+             Title="{Binding Tytul}">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label Text="Opis" />
+            <Entry Text="{Binding Opis, Mode=TwoWay}" Placeholder="np. Zakupy w sklepie" />
+            <Label Text="{Binding BladOpisu}" TextColor="{AppThemeBinding Light=#B3261E, Dark=#FFB4AB}" />
+
+            <Label Text="Kwota" />
+            <Entry Text="{Binding KwotaTekst, Mode=TwoWay}" Keyboard="Numeric" Placeholder="np. 125,50" />
+            <Label Text="{Binding BladKwoty}" TextColor="{AppThemeBinding Light=#B3261E, Dark=#FFB4AB}" />
+
+            <Label Text="Kategoria" />
+            <Picker Title="Wybierz kategorię" ItemsSource="{Binding Kategorie}"
+                    SelectedItem="{Binding Kategoria, Mode=TwoWay}" />
+            <Label Text="{Binding BladKategorii}" TextColor="{AppThemeBinding Light=#B3261E, Dark=#FFB4AB}" />
+
+            <Label Text="Data" />
+            <DatePicker Date="{Binding Data, Mode=TwoWay}" Format="d MMMM yyyy" />
+
+            <HorizontalStackLayout Spacing="12">
+                <Label Text="Przychód" VerticalOptions="Center" />
+                <Switch IsToggled="{Binding CzyPrzychod, Mode=TwoWay}" />
+            </HorizontalStackLayout>
+            <Label Text="Wyłączony przełącznik oznacza wydatek." FontSize="12" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,16,0,0">
+                <Button Text="Anuluj" Command="{Binding AnulujCommand}" />
+                <Button Grid.Column="1" Text="Zapisz" Command="{Binding ZapiszCommand}" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
