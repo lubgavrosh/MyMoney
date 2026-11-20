@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite;
 
-namespace MyMoney.Models
+namespace MyMoney.Models;
+
+public class Transaction
 {
-    public class Transaction
-    {
-        public string Opis { get; set; } = "";
-        public decimal Kwota { get; set; }
-        public DateTime Data { get; set; }
-        public bool CzyPrzychod { get; set; }
-        public string Kategoria { get; set; } = "";
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
 
-        // pole wyliczane, tylko do wyświetlania
-        public string Typ => CzyPrzychod ? "Przychód" : "Wydatek";
-    }
+    public string Opis { get; set; } = "";
+    public decimal Kwota { get; set; }
+    public DateTime Data { get; set; }
+    public bool CzyPrzychod { get; set; }
+    public string Kategoria { get; set; } = "";
+
+    [Ignore]
+    public string Typ => CzyPrzychod ? "Przychód" : "Wydatek";
 }

@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 
 using MyMoney.ViewModels;
+using MyMoney.Services;
 
 namespace MyMoney
 {
@@ -17,6 +18,7 @@ namespace MyMoney
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<TransakcjeBaza>();
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<TransakcjeViewModel>();
             builder.Services.AddTransient<DetailsPage_1>();

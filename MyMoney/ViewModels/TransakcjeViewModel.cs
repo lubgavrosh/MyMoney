@@ -1,34 +1,38 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MyMoney.Models;
+using MyMoney.Services;
 
 namespace MyMoney.ViewModels;
 
 public partial class TransakcjeViewModel : ObservableObject
 {
-        public ObservableCollection<Transaction> Transakcje { get; } = new()
-        {
-            new Transaction { Opis = "Zakupy w sklepie", Kwota = 125.50m, Data = new DateTime(2026, 10, 9),  CzyPrzychod = false, Kategoria = "Jedzenie" },
-            new Transaction { Opis = "Pensja",           Kwota = 4200m,   Data = new DateTime(2026, 10, 1),  CzyPrzychod = true,  Kategoria = "Pensja" },
-            new Transaction { Opis = "Bilet miesięczny", Kwota = 109m,    Data = new DateTime(2026, 10, 3),  CzyPrzychod = false, Kategoria = "Transport" },
-            new Transaction { Opis = "Rachunek za prąd", Kwota = 230.40m, Data = new DateTime(2026, 10, 12), CzyPrzychod = false, Kategoria = "Rachunki" },
-            new Transaction { Opis = "Kino",             Kwota = 45m,     Data = new DateTime(2026, 10, 15), CzyPrzychod = false, Kategoria = "Rozrywka" },
-            new Transaction { Opis = "Zwrot podatku",    Kwota = 380m,    Data = new DateTime(2026, 10, 18), CzyPrzychod = true,  Kategoria = "Inne" },
-        };
+    public ObservableCollection<Transaction> Transakcje { get; } = new();
+    private readonly TransakcjeBaza _baza;
 
     [ObservableProperty]
     private int _liczbaTransakcji;
 
-    public TransakcjeViewModel()
+    public TransakcjeViewModel(TransakcjeBaza baza)
     {
+        _baza = baza;
+    }
+
+    [RelayCommand]
+    private async Task Wczytaj()
+    {
+        var transakcje = await _baza.PobierzWszystkieAsync();
+        Transakcje.Clear();
+        foreach (var transakcja in transakcje)
+            Transakcje.Add(transakcja);
         LiczbaTransakcji = Transakcje.Count;
     }
 
     [RelayCommand]
-    private void Dodaj()
+    private async Task Dodaj()
     {
-        Transakcje.Add(new Transaction
+        await _baza.ZapiszAsync(new Transaction
         {
             Opis = "Nowa transakcja",
             Kwota = 50m,
@@ -36,7 +40,7 @@ public partial class TransakcjeViewModel : ObservableObject
             CzyPrzychod = false,
             Kategoria = "Inne"
         });
-        LiczbaTransakcji = Transakcje.Count;
+        await Wczytaj();
     }
 
     [RelayCommand]

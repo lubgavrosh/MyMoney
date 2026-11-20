@@ -12,6 +12,7 @@
         <Label Text="{Binding Transakcja.Typ, StringFormat='Typ: {0}'}" />
         <Label Text="{Binding Transakcja.Kategoria, StringFormat='Kategoria: {0}'}" />
         <Label Text="{Binding Transakcja.Data, StringFormat='Data: {0:d MMMM yyyy}'}" />
+        <Button Text="Usuń" Command="{Binding UsunCommand}" BackgroundColor="#B3261E" TextColor="White" />
         <Button Text="Wróć" Command="{Binding WrocCommand}" />
     </VerticalStackLayout>
 
